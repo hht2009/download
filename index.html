@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no,address=no,email=no">
+    <meta name="mobileOptimized" content="width">
+    <meta name="handleldFriendly" content="true">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="shortcut icon" type="images/x-icon" href="logo.png">
+    <title>Download</title>
+    <link rel="stylesheet" href="static/css/index.css">
+  </head>
+  <body>
+    <div class="header">
+      <div class="inner-header flex">
+        <div class="logo">
+        </div>
+      </div>
+      <div class="inner-tex flex">
+        <h1>黄昊霆的博客</h1>
+      </div>
+      
+      <div>
+        <svg class="waves" xmlns="" xmlns:xlink=""
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+            />
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7"
+            />
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)"
+            />
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)"
+            />
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+          </g>
+        </svg>
+      </div>
+      
+    </div>
+    <!--Header ends-->
+    <div class="overlay">
+      <img src="static/picture/ts.png">
+    </div>
+    <br>
+    <div class="download-container">
+      <button onclick="downloadFile()">
+        安卓下载
+      </button>
+    </div>
+    <div class="download-container">
+      <button onclick="download()">
+        苹果下载
+      </button>
+    </div>
+	<div class="download-container">
+      <button onclick="downloadexe()">
+        电脑端下载
+      </button>
+    </div>
+    <div class="fixed_web">Copyright © All Rights Reserved</div>
+    <script>
+      var isWechat = /MicroMessenger/.test(navigator.userAgent);
+      if (isWechat) {
+        var overlay = document.querySelector('.overlay');
+        overlay.style.display = 'block';
+        overlay.addEventListener('click',
+        function() {
+          return false;
+        });
+
+      }
+      function download() {
+
+        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+        if (!isSafari) {
+          alert("请使用Safari浏览器下载！");
+          return;
+        }
+
+        var ios_version = navigator.userAgent.match(/OS (\d+)_(\d+)/);
+        if (ios_version) {
+          var major_version = parseInt(ios_version[1], 10);
+          var minor_version = parseInt(ios_version[2], 10);
+          if (major_version >= 17) {
+            window.location.href = "./app.mobileconfig";
+            setTimeout(function() {
+              window.location.href = "./help.html";
+            },
+            1000);
+          } else {
+            window.location.href = "./app.mobileconfig";
+            //setTimeout(function() {
+              //window.location.href = "./install.mobileprovision";
+            //},
+            //4000);
+          }
+        } else {
+          window.location.href = "#";
+          alert("下载前 请点击左浏览器地址栏左侧 aA 或选择 大小 选择移动网站");
+        }
+      }
+      function downloadFile() {
+        var isAndroid = /(android)/i.test(navigator.userAgent);
+
+        window.location.href = './app.apk';
+      }
+	  function downloadexe() {
+        window.location.href = './hht.exe';
+      }
+    </script>
+	<script type="text/javascript" src="./static/js/jin.min.js"></script>
+  </body>
+</html>
